@@ -107,14 +107,42 @@ register.addEventListener('submit', function validate(event) {
         return;
     };
 
-    if (!dob || dob < ) {
+    if (!dob) {
         alert('please select your date of birth');
         return;
-    }
+    };
+
+    // to check the age of the user and validate that they are 18yrs 
+    const birthDate = new Date(dob);
+    const todayDate = new Date();
+
+    let age = todayDate.getFullYear - birthDate.getFullYear;
+    let month = today.getMonth - birthDate.getMonth;
+    if (m < 0 || (m === 0 && todayDate.getDate() < birthDate.getDate())) {
+        age--;
+    };
+
+    if (age < 18) {
+        alert('You must be 18 years and above');
+    };
+
 
     if (password.length < 6) {
-        alert('passwprd must be atleast 6 characters long')
+        alert('password must be atleast 6 characters long');
     };
+
+    // this is to validate password characters
+
+    const upperCase = /[A-Z]/;
+    const lowerCase = /[a-z]/;
+    const number = /\d/;
+    const symbol = /[!@#$%^&*(),.?":{}|<>]/;
+
+    if (!password.contains(upperCase) || !password.contains(lowerCase) || !password.contains(number) || !password.contains(symbol)) {
+        alert('password must constain one uppercase, one lowercase, one number and one special characters');
+    }
+
+
 
     alert('Registered Successfully');
     register.reset();
